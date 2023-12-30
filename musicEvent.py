@@ -1,6 +1,7 @@
 import requests
 import selectorlib as sl
 from send_message import send_msg
+import time
 
 
 URL = 'https://programmer100.pythonanywhere.com/tours/'
@@ -43,13 +44,17 @@ def open_file():
 
 
 if __name__ == '__main__':
-    text = scrape(URL)
-    # print(text)
+    while True:
+        text = scrape(URL)
+        # print(text)
 
-    value = extract(text)
-    # print(f'VALUES: {value}')
+        value = extract(text)
+        # print(f'VALUES: {value}')
 
-    data = open_file()
-    # print(f'data: {data}')
-    if value != 'No upcoming tours' and value not in data:
-        send_email(value)
+        data = open_file()
+        # print(f'data: {data}')
+        if value != 'No upcoming tours' and value not in data:
+            send_email(value)
+        
+
+        time.sleep(3600)
