@@ -1,5 +1,6 @@
 import requests
 import selectorlib as sl
+from send_message import send_msg
 
 
 URL = 'https://programmer100.pythonanywhere.com/tours/'
@@ -18,7 +19,7 @@ def extract(source):
 
 
 def send_email(value):
-    print(f'Email Sent: {value}')
+    send_msg(value)
     save_value(value)
 
 
@@ -46,9 +47,9 @@ if __name__ == '__main__':
     # print(text)
 
     value = extract(text)
-    print(f'VALUES: {value}')
+    # print(f'VALUES: {value}')
 
     data = open_file()
-    print(f'data: {data}')
+    # print(f'data: {data}')
     if value != 'No upcoming tours' and value not in data:
         send_email(value)
